@@ -1,4 +1,8 @@
 *
+!*.m
+!*.hex
+!.gitignore
+!*.md
 !*.v.bak
 !*.qpf
 !*.qsf
