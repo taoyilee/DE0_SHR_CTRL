@@ -8,5 +8,5 @@
 !*.tcl
 !*.pin
 !*/
-work/
-sine_gen/
+/sine_gen
+/work
