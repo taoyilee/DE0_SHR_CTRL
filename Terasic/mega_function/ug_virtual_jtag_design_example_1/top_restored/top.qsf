@@ -1,0 +1,154 @@
+# Copyright (C) 1991-2006 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+
+
+# The default values for assignments are stored in the file
+#		top_assignment_defaults.qdf
+# If this file doesn't exist, and for assignments not listed, see file
+#		assignment_defaults.qdf
+
+# Altera recommends that you do not modify this file. This
+# file is updated automatically by the Quartus II software
+# and any changes you make may be lost or overwritten.
+
+
+set_global_assignment -name DEVICE Auto
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name TOP_LEVEL_ENTITY top
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 2.2
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "11:21:45  DECEMBER 20, 2006"
+set_global_assignment -name LAST_QUARTUS_VERSION "12.0 SP1"
+set_global_assignment -name ACLK_CAT OFF
+set_global_assignment -name ACLK_RULE_IMSZER_ADOMAIN OFF
+set_global_assignment -name ACLK_RULE_NO_SZER_ACLK_DOMAIN OFF
+set_global_assignment -name ACLK_RULE_SZER_BTW_ACLK_DOMAIN OFF
+set_global_assignment -name CLK_CAT OFF
+set_global_assignment -name CLK_RULE_CLKNET_CLKSPINES OFF
+set_global_assignment -name CLK_RULE_COMB_CLOCK OFF
+set_global_assignment -name CLK_RULE_INPINS_CLKNET OFF
+set_global_assignment -name CLK_RULE_INV_CLOCK OFF
+set_global_assignment -name CLK_RULE_MIX_EDGES OFF
+set_global_assignment -name HCPY_CAT OFF
+set_global_assignment -name HCPY_VREF_PINS OFF
+set_global_assignment -name NONSYNCHSTRUCT_CAT OFF
+set_global_assignment -name NONSYNCHSTRUCT_RULE_COMBLOOP OFF
+set_global_assignment -name NONSYNCHSTRUCT_RULE_DELAY_CHAIN OFF
+set_global_assignment -name NONSYNCHSTRUCT_RULE_ILLEGAL_PULSE_GEN OFF
+set_global_assignment -name NONSYNCHSTRUCT_RULE_LATCH_UNIDENTIFIED OFF
+set_global_assignment -name NONSYNCHSTRUCT_RULE_MULTI_VIBRATOR OFF
+set_global_assignment -name NONSYNCHSTRUCT_RULE_REG_LOOP OFF
+set_global_assignment -name NONSYNCHSTRUCT_RULE_RIPPLE_CLK OFF
+set_global_assignment -name NONSYNCHSTRUCT_RULE_SRLATCH OFF
+set_global_assignment -name RESET_CAT OFF
+set_global_assignment -name RESET_RULE_COMB_ASYNCH_RESET OFF
+set_global_assignment -name RESET_RULE_IMSYNCH_ASYNCH_DOMAIN OFF
+set_global_assignment -name RESET_RULE_IMSYNCH_EXRESET OFF
+set_global_assignment -name RESET_RULE_INPINS_RESETNET OFF
+set_global_assignment -name RESET_RULE_UNSYNCH_ASYNCH_DOMAIN OFF
+set_global_assignment -name RESET_RULE_UNSYNCH_EXRESET OFF
+set_global_assignment -name SIGNALRACE_CAT OFF
+set_global_assignment -name TIMING_CAT OFF
+set_global_assignment -name TIMING_RULE_COIN_CLKEDGE OFF
+set_global_assignment -name TIMING_RULE_SHIFT_REG OFF
+set_global_assignment -name APEX20K_OPTIMIZATION_TECHNIQUE SPEED
+set_global_assignment -name AUTO_PACKED_REGISTERS_CYCLONE NORMAL
+set_global_assignment -name AUTO_PACKED_REGISTERS_STRATIX NORMAL
+set_global_assignment -name CYCLONE_OPTIMIZATION_TECHNIQUE AREA
+set_global_assignment -name STRATIX_OPTIMIZATION_TECHNIQUE SPEED
+set_global_assignment -name INCLUDE_EXTERNAL_PIN_DELAYS_IN_FMAX_CALCULATIONS OFF
+set_global_assignment -name MAX_SCC_SIZE 50
+set_global_assignment -name EDA_BOARD_DESIGN_TOOL "<NONE>"
+set_global_assignment -name EDA_DESIGN_ENTRY_SYNTHESIS_TOOL "<None>"
+set_global_assignment -name EDA_FORMAL_VERIFICATION_TOOL "<None>"
+set_global_assignment -name EDA_RESYNTHESIS_TOOL "<NONE>"
+set_global_assignment -name EDA_SIMULATION_TOOL "<None>"
+set_global_assignment -name EDA_TIMING_ANALYSIS_TOOL "<NONE>"
+set_global_assignment -name EDA_INPUT_DATA_FORMAT EDIF -section_id eda_design_synthesis
+set_global_assignment -name EDA_GENERATE_SDF_OUTPUT_FILE ON -section_id eda_simulation
+set_global_assignment -name EDA_GENERATE_SDF_OUTPUT_FILE ON -section_id eda_timing_analysis
+set_global_assignment -name EDA_GENERATE_SDF_OUTPUT_FILE ON -section_id eda_board_design
+set_global_assignment -name EDA_GENERATE_SDF_OUTPUT_FILE ON -section_id eda_formal_verification
+set_global_assignment -name EDA_GENERATE_SDF_OUTPUT_FILE ON -section_id eda_palace
+set_global_assignment -name DRC_REPORT_FANOUT_EXCEEDING OFF
+set_global_assignment -name DRC_REPORT_TOP_FANOUT OFF
+set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
+set_global_assignment -name OPTIMIZE_TIMING NORMAL_COMPILATION
+set_global_assignment -name APEX20K_CONFIGURATION_DEVICE EPC2
+set_global_assignment -name AUTO_RESTART_CONFIGURATION OFF
+set_global_assignment -name CYCLONE_CONFIGURATION_DEVICE EPC2
+set_global_assignment -name CYCLONE_CONFIGURATION_SCHEME "PASSIVE SERIAL"
+set_global_assignment -name EXCALIBUR_CONFIGURATION_DEVICE EPC2
+set_global_assignment -name FLEX10K_CONFIGURATION_DEVICE EPC2
+set_global_assignment -name FLEX6K_CONFIGURATION_DEVICE EPC1
+set_global_assignment -name MERCURY_CONFIGURATION_DEVICE EPC2
+set_global_assignment -name ON_CHIP_BITSTREAM_DECOMPRESSION OFF
+set_global_assignment -name RESERVE_PIN "AS INPUT TRI-STATED"
+set_global_assignment -name STRATIX_CONFIGURATION_DEVICE EPC2
+set_global_assignment -name PRE_FLOW_SCRIPT_FILE "quartus_sh:write_stamp.tcl"
+set_global_assignment -name PARTITION_NETLIST_TYPE POST_FIT -section_id Top
+set_global_assignment -name CYCLONEII_CONFIGURATION_SCHEME "PASSIVE SERIAL"
+set_global_assignment -name USE_CONFIGURATION_DEVICE OFF
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name ALLOW_POWER_UP_DONT_CARE OFF
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
+set_global_assignment -name ENABLE_ADVANCED_IO_TIMING ON
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
+set_global_assignment -name FORCE_CONFIGURATION_VCCIO ON
+set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
+set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
+set_global_assignment -name STRATIX_JTAG_USER_CODE ABCDEFAB
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name ENABLE_SIGNALTAP ON
+set_global_assignment -name USE_SIGNALTAP_FILE stp1.stp
+set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_PIN_TO_SLD_NODE_ENTITY_PORT acq_clk -to auto_stp_external_clock_0 -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to count[2]~154 -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[0] -to count[2]~154 -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT storage_enable -to auto_stp_external_storage_qualifier -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=805334528" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_POWER_UP_TRIGGER=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=0000000000000000000000000" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=25" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=128" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ATTRIBUTE_MEM_MODE=OFF" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_FLOW_USE_GENERATED=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_BITS=11" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_GAP_RECORD=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_MODE=PORT" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=1695" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=128" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=20809" -section_id auto_signaltap_0
+set_global_assignment -name VERILOG_FILE top.v
+set_global_assignment -name VECTOR_WAVEFORM_FILE top.vwf
+set_global_assignment -name VERILOG_FILE vji_interface.v
+set_global_assignment -name VERILOG_FILE vji_timestamp.v
+set_global_assignment -name VERILOG_FILE timestamp.v
+set_global_assignment -name MISC_FILE top.dpf
+set_global_assignment -name SIGNALTAP_FILE stp1.stp
