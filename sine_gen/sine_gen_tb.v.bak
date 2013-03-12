@@ -1,0 +1,24 @@
+
+module sine_gen_tb();
+// Declare inputs as regs and outputs as wires
+reg clock;
+reg res;
+wire [4:0] counter_out;
+wire [13:0] sin_out;
+
+// Initialize all variables
+initial begin        
+  clock = 1;       // initial value of clock
+  res = 1;
+  # 5 res = 0;
+end
+
+// Clock generator
+always begin
+  #5 clock <= ~clock; // Toggle clock every 5 ticks
+end
+
+// Connect DUT to test bench
+sine_gen sineU0 (clock,res, counter_out[4:0],sin_out);
+
+endmodule

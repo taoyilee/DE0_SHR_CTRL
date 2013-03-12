@@ -1,0 +1,37 @@
+module DE0_vJTAG_LED (
+	input CLOCK_50,			// CLOCK //	
+	output [7:0] LED			// LED //
+);
+
+clk_blinker U0  (
+					  .clk		(CLOCK_50),
+					  .blink  (LED[7])
+					  );
+					  
+wire tdo;
+wire tdi;
+wire tck;
+wire virtual_state_sdr;
+wire virtual_state_udr;
+wire ir_in;
+
+vJTAG_interface U1  (
+	.tck(tck),
+	.tdi(tdi), 	
+	.ir_in(ir_in),
+	.v_sdr(virtual_state_sdr), 
+	.udr(virtual_state_udr),	
+	.LEDs(LED[7:0]), 
+	.tdo(tdo)
+	);
+
+
+vJTAG U2(	
+	.tdo(tdo),
+	.ir_in(ir_in),
+	.tck(tck),
+	.tdi(tdi),
+	.virtual_state_sdr(virtual_state_sdr),
+	.virtual_state_udr(virtual_state_udr));
+
+endmodule
