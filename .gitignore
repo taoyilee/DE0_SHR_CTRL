@@ -5,6 +5,8 @@
 !*.md
 !*.v.bak
 !*.qpf
+!*.qpf.bak
 !*.qsf
+!*.qsf.bak
 !*.pin
 !*/
