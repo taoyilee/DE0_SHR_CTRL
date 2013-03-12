@@ -1,12 +1,2 @@
 *
-!.gitattributes
-!.gitignore
-!readme.md
-!.gitkeep
 !*.v
-!*.qpf
-!*.tcl
-!*.pin
-!*/
-/sine_gen
-/work
