@@ -4,6 +4,7 @@
 !.gitignore
 !*.md
 !*.v.bak
+!*.v
 !*.qpf
 !*.qpf.bak
 !*.tcl
