@@ -1,0 +1,35 @@
+//	DE0-Nano DE0_DIGITAL_AUTO
+
+module DE0_vJTAG_IR(
+	input CLOCK_50,			// CLOCK //	
+	output [7:0] LED
+);
+
+
+wire CLOCK_1;
+reg [2:0]IR_W;
+wire [2:0]IR_IN;
+wire tdo;
+wire tdi;
+wire tck;
+wire virtual_state_sdr;
+wire virtual_state_udr;
+
+assign LED[2:0] = IR_W[2:0];
+
+always @ (IR_W)
+begin
+	IR_W <= IR_IN
+end
+
+
+vJTAG U3(	
+	.tdo(tdo),
+	.ir_in(IR_IN[2:0]),
+	.tck(tck),
+	.tdi(tdi),
+	.virtual_state_sdr(virtual_state_sdr),
+	.virtual_state_udr(virtual_state_udr)
+	);
+
+endmodule

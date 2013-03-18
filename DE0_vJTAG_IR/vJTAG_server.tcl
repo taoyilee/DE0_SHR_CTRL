@@ -47,13 +47,12 @@ proc SEND_FPGA {send_data} {
 	# Shift through DR.  Note that -dr_value is unimportant since we're not actually capturing the value inside the part, just seeing what shifts out
 	puts "Writing - $send_data"
 	puts "IR set to 001 (vJTAG shr listen)"
-	device_virtual_ir_shift -instance_index 0 -ir_value 1 -no_captured_ir_value
+	device_virtual_ir_shift -instance_index 0 -ir_value 001 -no_captured_ir_value
 	#set tdi [device_virtual_dr_shift -dr_value $send_data -instance_index 0  -length 7] #Use this if you want to read back the tdi while you shift in the new value
 	device_virtual_dr_shift -dr_value $send_data -instance_index 0  -length 491 -no_captured_dr_value		
 	puts "IR set to 000 (vJTAG armed)"
 	# Set IR back to 0, which is bypass mode		
 	device_virtual_ir_shift -instance_index 0 -ir_value 000 -no_captured_ir_value	
-	device_unlock
 	closeport
 	#return $tdi
 }
@@ -63,11 +62,10 @@ proc send_ic {} {
 	device_lock -timeout 10000
 	puts "IR set to 010 (sends VK_SEND)"
 	# Set IR back to 10, which sends vkey[0]
-	device_virtual_ir_shift -instance_index 0 -ir_value 10 	-no_captured_ir_value
+	device_virtual_ir_shift -instance_index 0 -ir_value 010 -no_captured_ir_value
 	puts "IR set to 000 (vJTAG armed)"
 	# Set IR back to 0, which is bypass mode		
 	device_virtual_ir_shift -instance_index 0 -ir_value 000 -no_captured_ir_value
-	device_unlock
 	closeport
 	#return $tdi
 }
@@ -75,11 +73,10 @@ proc unset_CLREAR1MODE {} {
 	openport   
 	device_lock -timeout 10000
 	puts "IR set to 110 (sends ir_UNSET_CLRTO1)"
-	device_virtual_ir_shift -instance_index 0 -ir_value 110 -no_captured_ir_value	
+	device_virtual_ir_shift -instance_index 0 -ir_value 110 -no_captured_ir_value
 	puts "IR set to 000 (vJTAG armed)"
 	# Set IR back to 0, which is bypass mode		
 	device_virtual_ir_shift -instance_index 0 -ir_value 000 -no_captured_ir_value
-	device_unlock
 	closeport
 	#return $tdi
 }
@@ -88,10 +85,9 @@ proc set_CLREAR1MODE {} {
 	openport   
 	device_lock -timeout 10000
 	puts "IR set to 101 (sends ir_SET_CLRTO1)"
-	device_virtual_ir_shift -instance_index 0 -ir_value 101 -no_captured_ir_value	
+	device_virtual_ir_shift -instance_index 0 -ir_value 101 -no_captured_ir_value
 	puts "IR set to 000 (vJTAG armed)"
 	device_virtual_ir_shift -instance_index 0 -ir_value 000 -no_captured_ir_value
-	device_unlock
 	closeport
 }
 
@@ -101,11 +97,10 @@ proc unset_CLREARMODE {} {
 	device_lock -timeout 10000
 	puts "IR set to 100 (sends ir_UNSET_CLEAR)"
 	# Set IR back to 10, which sends vkey[0]
-	device_virtual_ir_shift -instance_index 0 -ir_value 100 -no_captured_ir_value	
+	device_virtual_ir_shift -instance_index 0 -ir_value 100 -no_captured_ir_value
 	puts "IR set to 000 (vJTAG armed)"
 	# Set IR back to 0, which is bypass mode		
 	device_virtual_ir_shift -instance_index 0 -ir_value 000 -no_captured_ir_value
-	device_unlock
 	closeport
 	#return $tdi
 }
@@ -114,10 +109,9 @@ proc set_CLREARMODE {} {
 	openport   
 	device_lock -timeout 10000
 	puts "IR set to 011 (sends ir_SET_CLEAR)"
-	device_virtual_ir_shift -instance_index 0 -ir_value 11 -no_captured_ir_value	
+	device_virtual_ir_shift -instance_index 0 -ir_value 011 -no_captured_ir_value
 	puts "IR set to 000 (vJTAG armed)"
 	device_virtual_ir_shift -instance_index 0 -ir_value 000 -no_captured_ir_value
-	device_unlock
 	closeport
 }
 
