@@ -3,14 +3,11 @@
 !*.hex
 !.gitignore
 !*.md
-!*.v.bak
 !*.v
 !*.qpf
-!*.qpf.bak
 !*.tcl
 !*.bat
 !*.qsf
-!*.qsf.bak
 !*.pin
 !*.sof
 !*.jic
