@@ -12,4 +12,8 @@
 !*.qsf
 !*.qsf.bak
 !*.pin
+!*.sof
+!*.jic
+!*.cdf
+!*.cof
 !*/

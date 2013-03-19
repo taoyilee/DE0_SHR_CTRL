@@ -7,7 +7,7 @@
 
 module DIN_SYN_vJTAG(
 	input clk_in,
-	input [643:0]data_reg,	//	Data Register, 451 bits
+	input [625:0]data_reg,	//	Data Register, 451 bits
 	input  trig,				// Trigger Signal	
 	input  clr_2_one,	
 									// 11 -> All zeros
@@ -25,7 +25,7 @@ reg clk_strobe;
 reg [9:0]counter;
 reg din_in;
 reg syn_in;
-parameter total_bits = 644	; 
+parameter total_bits = 626	; 
 
 bufif1  b1(clk, clk_in, clk_out_en);	// CLOCK output with data only
 bufif1  b2(syn, syn_in_mux, out_en);	// SYNC output with data only

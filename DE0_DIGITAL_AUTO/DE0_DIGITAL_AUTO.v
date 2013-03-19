@@ -8,7 +8,6 @@ module DE0_DIGITAL_AUTO(
 );
 
 
-
 wire VSW_R_CLRTO1;
 wire VK_SEND;
 wire tdo;
@@ -16,7 +15,7 @@ wire tdi;
 wire tck;
 wire CLOCK_1;
 wire [2:0]ir_in;
-wire [643:0]out_reg;
+wire [625:0]out_reg;
 wire VSW_R_CLEAR;
 wire virtual_state_sdr;
 wire virtual_state_udr;
@@ -49,7 +48,7 @@ DIN_SYN_vJTAG U0(
 	.clk_out_en(LED[4]),
 	.clr_2_one(VSW_R_CLRTO1),
 	.clr_mode(VSW_R_CLEAR),
-	.data_reg(out_reg[643:0])
+	.data_reg(out_reg[625:0])
 	);
 	
 pll pll0(
@@ -64,7 +63,7 @@ vJTAG_buffer U1  (
 	.ir_in(ir_in[2:0]),
 	.v_sdr(virtual_state_sdr), 
 	.udr(virtual_state_udr),	
-	.out_reg(out_reg[643:0]), 
+	.out_reg(out_reg[625:0]), 
 	.tdo(tdo)	
 	);
 	
