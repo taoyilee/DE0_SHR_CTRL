@@ -49,10 +49,10 @@ proc SEND_FPGA {send_data} {
 	puts "IR set to 001 (vJTAG shr listen)"
 	device_virtual_ir_shift -instance_index 0 -ir_value 1 -no_captured_ir_value
 	#set tdi [device_virtual_dr_shift -dr_value $send_data -instance_index 0  -length 7] #Use this if you want to read back the tdi while you shift in the new value
-	device_virtual_dr_shift -dr_value $send_data -instance_index 0  -length 620 -no_captured_dr_value		
+	device_virtual_dr_shift -dr_value $send_data -instance_index 0  -length 626 -no_captured_dr_value		
 	puts "IR set to 000 (vJTAG armed)"
 	# Set IR back to 0, which is bypass mode		
-	device_virtual_ir_shift -instance_index 0 -ir_value 000 -no_captured_ir_value	
+	device_virtual_ir_ shift -instance_index 0 -ir_value 000 -no_captured_ir_value	
 	device_unlock
 	closeport
 	#return $tdi
@@ -165,7 +165,7 @@ proc IncomingData {sock} {
 	 
 	if {$data_len != "0"} then {
 		set cmd  [string index $line 0]
-		set line [string range $line 0 619] 
+		set line [string range $line 0 625] 
 		if {$cmd == "A"} {
 			send_ic
 		} elseif {$cmd == "B"} {

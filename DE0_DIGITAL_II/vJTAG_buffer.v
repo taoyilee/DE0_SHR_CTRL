@@ -9,14 +9,13 @@ module vJTAG_buffer (
 	input tdi, 
 	input aclr,
 	input [2:0]ir_in,
-	input v_sdr, 
+	input v_sdr, 	
 	input udr,
-	output reg [619:0] out_reg, 
-	output reg tdo
-);
+	output reg [1023:0] out_reg
+	);
 
 reg DR0_bypass_reg; // Safeguard in case bad IR is sent through JTAG 
-reg [619:0] DR1; // Date, time and revision DR.  We could make separate Data Registers for each one, but
+reg [1023:0] DR1; // Date, time and revision DR.  We could make separate Data Registers for each one, but
 
 wire ir_WRITE = (ir_in==3'b001)?1'b1:1'b0; 
 
@@ -25,7 +24,7 @@ begin
 	if (aclr)
 	begin
 		DR0_bypass_reg <= 1'b0;
-		DR1 <= 619'b0;		
+		DR1 <= 1024'b0;		
 	end
 	else
 	begin
@@ -33,20 +32,11 @@ begin
 		
 		if ( v_sdr )  // VJI is in Shift DR state
 			if (ir_WRITE) //ir_in has been set to choose DR1
-				DR1 <= {tdi, DR1[619:1]}; // Shifting in (and out) the data			
+				DR1 <= {DR1[1022:0], tdi}; // Shifting in (and out) the data			
 	end
 end
 			
-		
-		
-//Maintain the TDO Continuity
-always @ (*)
-begin	
-	if (ir_WRITE)
-		tdo <= DR1[0];
-    else 
-		tdo <= DR0_bypass_reg;	
-end		
+			
 
 //The udr signal will assert when the data has been transmitted and it's time to Update the DR
 //  so copy it to the Output LED register. 

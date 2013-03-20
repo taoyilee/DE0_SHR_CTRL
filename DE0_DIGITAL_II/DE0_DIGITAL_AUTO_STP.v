@@ -8,44 +8,60 @@ module DE0_DIGITAL_AUTO(
 );
 
 
+
 wire VSW_R_CLRTO1;
 wire VK_SEND;
 wire tdo;
 wire tdi;
 wire tck;
-wire CLOCK_10K;
+wire CLOCK_1;
 wire [2:0]ir_in;
-wire [619:0]out_reg;
+wire [490:0]out_reg;
 wire VSW_R_CLEAR;
 wire virtual_state_sdr;
 wire virtual_state_udr;
 wire virtual_state_uir;
 wire virtual_state_cir;
-assign GPIO_1_D[0] = VK_SEND;
-assign GPIO_1_D[1] = VSW_R_CLEAR;
-assign GPIO_1_D[2] = VSW_R_CLRTO1;
-assign GPIO_1_D[8:3] = 5'b0000_0;
+//output virtual_state_sdr,
+//output virtual_state_udr,
+//output virtual_state_uir,
+//output [2:0]ir_in,
+//output [490:0]out_reg,
+//output VSW_R_CLEAR,
+//output CLOCK_1	
+	
+	
+//assign GPIO_1_D[0] = VK_SEND;
+//assign GPIO_1_D[1] = VSW_R_CLEAR;
+//assign GPIO_1_D[2] = VSW_R_CLRTO1;
+//assign GPIO_1_D[3] = virtual_state_sdr;
+//assign GPIO_1_D[4] = virtual_state_udr;
+assign GPIO_1_D[0] = virtual_state_uir;
+//assign GPIO_1_D[6] = virtual_state_cir;
+//assign GPIO_1_D[7] = VSW_R_CLRTO1;
+//assign GPIO_1_D[8] = VK_SEND;
+//assign GPIO_1_D[8] = virtual_state_uir;
+assign GPIO_1_D[8:1] = 8'b0000_0000;
 assign GPIO_1_D[9] = 1'b0;
 assign GPIO_1_D[11] = 1'b0;
 assign GPIO_1_D[13] = 1'b0;
 assign GPIO_1_D[15] = 1'b0;
-assign GPIO_1_D[33:16] = 17'b000_000_000_000_000_00;
+assign GPIO_1_D[33:17] = 17'b000_000_000_000_000_00;
 assign GPIO_0_D[33:0] = GPIO_1_D[33:0];
 assign LED[0] = VK_SEND;
 assign LED[1] = VSW_R_CLEAR;
 assign LED[2] = VSW_R_CLRTO1;
+//assign LED[2:0] = ir_in[2:0];
+//assign LED[0] = virtual_state_uir;
 assign LED[5] = ~GPIO_1_D[10]; // DIN
 assign LED[6] = ~GPIO_1_D[12]; // CLK
 assign LED[7] = ~GPIO_1_D[14]; // SYNC
-wire CLOCK_500;
+assign GPIO_1_D[16] = CLOCK_1;
 
-clk_d20 UD(
-	.clk_in(CLOCK_10K),
-	.clk(CLOCK_500), 	
-);
+
 
 DIN_SYN_vJTAG U0(
-	.clk_in(CLOCK_500),
+	.clk_in(CLOCK_1),
 	.trig(VK_SEND), 	
 	.clk(GPIO_1_D[12]),	// CLOCK
 	.din(GPIO_1_D[10]),	// Digital Input
@@ -54,12 +70,12 @@ DIN_SYN_vJTAG U0(
 	.clk_out_en(LED[4]),
 	.clr_2_one(VSW_R_CLRTO1),
 	.clr_mode(VSW_R_CLEAR),
-	.data_reg(out_reg[619:0])
+	.data_reg(out_reg[490:0])
 	);
 	
 pll pll0(
 	.inclk0(CLOCK_50), 
-	.c0(CLOCK_10K)
+	.c0(CLOCK_1)
 	);
 	
 
@@ -69,7 +85,7 @@ vJTAG_buffer U1  (
 	.ir_in(ir_in[2:0]),
 	.v_sdr(virtual_state_sdr), 
 	.udr(virtual_state_udr),	
-	.out_reg(out_reg[619:0]), 
+	.out_reg(out_reg[490:0]), 
 	.tdo(tdo)	
 	);
 	

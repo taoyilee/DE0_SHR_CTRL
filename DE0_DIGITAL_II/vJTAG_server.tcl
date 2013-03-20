@@ -40,20 +40,37 @@ proc closeport { } {
 	catch {device_unlock}
 	catch {close_device}
 }
-
-proc SEND_FPGA {send_data} {
+proc SEND_LEN { len} {
 	openport   
 	device_lock -timeout 10000
 	# Shift through DR.  Note that -dr_value is unimportant since we're not actually capturing the value inside the part, just seeing what shifts out
+	puts "IR set to 000 (vJTAG armed)"
+		device_virtual_ir_shift -instance_index 0 -ir_value 000 -no_captured_ir_value
+
+	puts "Sending length in binary"
+	puts "IR set to 111 (Set length)"
+	device_virtual_ir_shift -instance_index 0 -ir_value 111 -no_captured_ir_value
+	#set tdi [device_virtual_dr_shift -dr_value $send_data -instance_index 0  -length 7] #Use this if you want to read back the tdi while you shift in the new value
+	puts "Writing - $len"
+	device_virtual_dr_shift -dr_value $len -instance_index 0 -length 15 -no_captured_dr_value
+	puts "\n--------  IR set to 000 (vJTAG armed) --------\n"	
+	device_virtual_ir_shift -instance_index 0 -ir_value 000 -no_captured_ir_value
+	closeport
+	#return $tdi
+}
+proc SEND_FPGA {send_data str_length} {
+	openport   
+	device_lock -timeout 10000
+	# Shift through DR.  Note that -dr_value is unimportant since we're not actually capturing the value inside the part, just seeing what shifts out
+	device_virtual_ir_shift -instance_index 0 -ir_value 000 -no_captured_ir_value
 	puts "Writing - $send_data"
 	puts "IR set to 001 (vJTAG shr listen)"
 	device_virtual_ir_shift -instance_index 0 -ir_value 1 -no_captured_ir_value
 	#set tdi [device_virtual_dr_shift -dr_value $send_data -instance_index 0  -length 7] #Use this if you want to read back the tdi while you shift in the new value
-	device_virtual_dr_shift -dr_value $send_data -instance_index 0  -length 620 -no_captured_dr_value		
+	device_virtual_dr_shift -dr_value $send_data -instance_index 0  -length $str_length -no_captured_dr_value		
 	puts "IR set to 000 (vJTAG armed)"
 	# Set IR back to 0, which is bypass mode		
 	device_virtual_ir_shift -instance_index 0 -ir_value 000 -no_captured_ir_value	
-	device_unlock
 	closeport
 	#return $tdi
 }
@@ -67,7 +84,6 @@ proc send_ic {} {
 	puts "IR set to 000 (vJTAG armed)"
 	# Set IR back to 0, which is bypass mode		
 	device_virtual_ir_shift -instance_index 0 -ir_value 000 -no_captured_ir_value
-	device_unlock
 	closeport
 	#return $tdi
 }
@@ -79,7 +95,6 @@ proc unset_CLREAR1MODE {} {
 	puts "IR set to 000 (vJTAG armed)"
 	# Set IR back to 0, which is bypass mode		
 	device_virtual_ir_shift -instance_index 0 -ir_value 000 -no_captured_ir_value
-	device_unlock
 	closeport
 	#return $tdi
 }
@@ -91,7 +106,6 @@ proc set_CLREAR1MODE {} {
 	device_virtual_ir_shift -instance_index 0 -ir_value 101 -no_captured_ir_value	
 	puts "IR set to 000 (vJTAG armed)"
 	device_virtual_ir_shift -instance_index 0 -ir_value 000 -no_captured_ir_value
-	device_unlock
 	closeport
 }
 
@@ -162,10 +176,13 @@ proc IncomingData {sock} {
     } else {
 	#Before the connection is closed we get an emtpy data transmission. Let's check for it and trap it
 	set data_len [string length $line]
-	 
+	
 	if {$data_len != "0"} then {
 		set cmd  [string index $line 0]
-		set line [string range $line 0 619] 
+		set CW [string range $line 16 $data_len]		
+		set LEN [string range $line 0 14]		
+		set CW_LEN [string length $CW]
+		puts "Received $CW_LEN characters......\n"
 		if {$cmd == "A"} {
 			send_ic
 		} elseif {$cmd == "B"} {
@@ -178,7 +195,8 @@ proc IncomingData {sock} {
 			unset_CLREAR1MODE		
 		} else { 
 			#Send the vJTAG Commands to Update the LED
-			SEND_FPGA $line
+			SEND_LEN  $LEN
+			SEND_FPGA $CW $CW_LEN 
 		}
 	}
     }

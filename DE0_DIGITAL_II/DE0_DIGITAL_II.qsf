@@ -1,6 +1,6 @@
 set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE EP4CE22F17C6
-set_global_assignment -name TOP_LEVEL_ENTITY "DE0_DIGITAL_AUTO"
+set_global_assignment -name TOP_LEVEL_ENTITY "DE0_DIGITAL_II"
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 9.1
 set_global_assignment -name LAST_QUARTUS_VERSION "12.1 SP1"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "16:17:44 DECEMBER 21,2010"
@@ -258,21 +258,15 @@ set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to GPIO_0_D[30]
 set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to GPIO_0_D[31]
 set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to GPIO_0_D[32]
 set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to GPIO_0_D[33]
-
 set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to LED[5]
-
-
-
-
-set_global_assignment -name VERILOG_FILE vJTAG_buffer.v
-set_global_assignment -name VERILOG_FILE DE0_DIGITAL_AUTO.v
-set_global_assignment -name SDC_FILE DE0_DIGITAL_AUTO.SDC
-set_global_assignment -name VERILOG_FILE DIN_SYN_vJTAG.v
 set_instance_assignment -name IO_STANDARD "2.5 V" -to GPIO_1_D[20]
+set_global_assignment -name ENABLE_SIGNALTAP OFF
+set_global_assignment -name VERILOG_FILE dout_SYN_vJTAG.v
+set_global_assignment -name VERILOG_FILE vJTAG_buffer.v
+set_global_assignment -name VERILOG_FILE DE0_DIGITAL_II.v
 set_global_assignment -name VERILOG_FILE vKEY.v
-set_global_assignment -name ENABLE_SIGNALTAP ON
-set_global_assignment -name USE_SIGNALTAP_FILE STP2.stp
 set_global_assignment -name VERILOG_FILE clk_d20.v
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name VERILOG_FILE seq_length.v
 set_global_assignment -name QIP_FILE pll.qip
 set_global_assignment -name QIP_FILE vJTAG.qip
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

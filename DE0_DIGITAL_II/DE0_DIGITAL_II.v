@@ -1,6 +1,6 @@
 //	DE0-Nano DE0_DIGITAL_AUTO
 
-module DE0_DIGITAL_AUTO(
+module DE0_DIGITAL_II(
 	input CLOCK_50,			// CLOCK //	
 	output [7:0] LED,			// LED //
 	output [33:0] GPIO_0_D,	// GPIO_0, GPIO_0 connect to GPIO Default //
@@ -13,48 +13,50 @@ wire VK_SEND;
 wire tdo;
 wire tdi;
 wire tck;
+wire td_a;
 wire CLOCK_10K;
 wire [2:0]ir_in;
-wire [619:0]out_reg;
+wire [1024:0]out_reg;
 wire VSW_R_CLEAR;
 wire virtual_state_sdr;
 wire virtual_state_udr;
 wire virtual_state_uir;
 wire virtual_state_cir;
-assign GPIO_1_D[0] = VK_SEND;
-assign GPIO_1_D[1] = VSW_R_CLEAR;
-assign GPIO_1_D[2] = VSW_R_CLRTO1;
-assign GPIO_1_D[8:3] = 5'b0000_0;
-assign GPIO_1_D[9] = 1'b0;
+
+assign GPIO_1_D[9:0] = seq_length[9:0];
 assign GPIO_1_D[11] = 1'b0;
 assign GPIO_1_D[13] = 1'b0;
 assign GPIO_1_D[15] = 1'b0;
-assign GPIO_1_D[33:16] = 17'b000_000_000_000_000_00;
+assign GPIO_1_D[33:22] = 12'b000_000_000_000;
+assign GPIO_1_D[20:16] = div_base[4:0];
+assign GPIO_1_D[21] = virtual_state_udr;
 assign GPIO_0_D[33:0] = GPIO_1_D[33:0];
-assign LED[0] = VK_SEND;
 assign LED[1] = VSW_R_CLEAR;
 assign LED[2] = VSW_R_CLRTO1;
-assign LED[5] = ~GPIO_1_D[10]; // DIN
-assign LED[6] = ~GPIO_1_D[12]; // CLK
-assign LED[7] = ~GPIO_1_D[14]; // SYNC
+assign LED[4:3] = 2'b00;
+assign LED[5] = GPIO_1_D[10]; // DIN
+assign LED[6] = GPIO_1_D[12]; // CLK
+assign LED[7] = GPIO_1_D[14]; // SYNC
 wire CLOCK_500;
-
+wire [9:0]seq_length;
+wire [4:0]div_base;
 clk_d20 UD(
 	.clk_in(CLOCK_10K),
-	.clk(CLOCK_500), 	
+	.div_base(div_base[4:0]),
+	.clk(CLOCK_500)
 );
 
-DIN_SYN_vJTAG U0(
+dout_SYN_vJTAG U0(
 	.clk_in(CLOCK_500),
 	.trig(VK_SEND), 	
 	.clk(GPIO_1_D[12]),	// CLOCK
-	.din(GPIO_1_D[10]),	// Digital Input
+	.dout(GPIO_1_D[10]),	// Digital Input
 	.syn(GPIO_1_D[14]),	// Sync Signal
-	.out_en(LED[3]),
-	.clk_out_en(LED[4]),
+	.out_en(LED[0]),
 	.clr_2_one(VSW_R_CLRTO1),
 	.clr_mode(VSW_R_CLEAR),
-	.data_reg(out_reg[619:0])
+	.data_reg(out_reg[1023:0]),
+	.seq_length(seq_length[9:0])
 	);
 	
 pll pll0(
@@ -63,14 +65,24 @@ pll pll0(
 	);
 	
 
+seq_length U4  (
+	.tck(tck),
+	.tdi(tdi), 	
+	.ir_in(ir_in[2:0]),
+	.v_sdr(virtual_state_sdr), 
+	.udr(virtual_state_udr),		
+	.seq_length(seq_length[9:0]),
+	.div_base(div_base[4:0])
+	);
+	
+	
 vJTAG_buffer U1  (
 	.tck(tck),
 	.tdi(tdi), 	
 	.ir_in(ir_in[2:0]),
 	.v_sdr(virtual_state_sdr), 
 	.udr(virtual_state_udr),	
-	.out_reg(out_reg[619:0]), 
-	.tdo(tdo)	
+	.out_reg(out_reg[1023:0])
 	);
 	
 vKEY U2  (	
