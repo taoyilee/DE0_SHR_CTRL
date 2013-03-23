@@ -26,8 +26,9 @@ reg clk_strobe;
 reg [9:0]counter;
 reg syn_internal;
 assign dout = clr_mode?(clr_2_one?1'b1:1'b0):(out_en?data_reg[counter]:1'b0);
-assign syn = clr_mode?1'b0:syn_internal;
+assign syn = clr_mode?1'b0:(syn_disable?1'b0:syn_internal);
 assign clk = out_en?clk_in:1'b0;
+assign syn_disable = clr_mode?1'b0:clr_2_one?1'b1:1'b0;
 
 /* trigger is valid only if output is not enabled (ready mode)
 	do not trigger when output is enabled otherwise 
