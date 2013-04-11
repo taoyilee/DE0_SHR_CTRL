@@ -28,15 +28,15 @@ assign GPIO_1_D[11] = 1'b0;
 assign GPIO_1_D[13] = 1'b0;
 assign GPIO_1_D[15] = 1'b0;
 assign GPIO_1_D[33:22] = 12'b000_000_000_000;
-assign GPIO_1_D[20:16] = div_base[4:0];
+//assign GPIO_1_D[20:16] = div_base[4:0];
 assign GPIO_1_D[21] = virtual_state_udr;
 assign GPIO_0_D[33:0] = GPIO_1_D[33:0];
 assign LED[1] = VSW_R_CLEAR;
 assign LED[2] = VSW_R_CLRTO1;
 assign LED[4:3] = 2'b00;
-assign LED[5] = GPIO_1_D[10]; // DIN
-assign LED[6] = GPIO_1_D[12]; // CLK
-assign LED[7] = GPIO_1_D[14]; // SYNC
+assign LED[5] = GPIO_1_D[14]; // DIN
+assign LED[6] = GPIO_1_D[16]; // CLK
+assign LED[7] = GPIO_1_D[18]; // SYNC
 wire CLOCK_500;
 wire [9:0]seq_length;
 wire [4:0]div_base;
@@ -49,8 +49,8 @@ clk_d20 UD(
 dout_SYN_vJTAG U0(
 	.clk_in(CLOCK_500),
 	.trig(VK_SEND), 	
-	.clk(GPIO_1_D[12]),	// CLOCK
-	.dout(GPIO_1_D[10]),	// Digital Input
+	.clk(GPIO_1_D[16]),	// CLOCK
+	.dout(GPIO_1_D[18]),	// Digital Input
 	.syn(GPIO_1_D[14]),	// Sync Signal
 	.out_en(LED[0]),
 	.clr_2_one(VSW_R_CLRTO1),
