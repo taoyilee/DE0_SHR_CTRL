@@ -1,6 +1,6 @@
 //	DE0-Nano DE0_DIGITAL_AUTO
 
-module DE0_DIGITAL_II(
+module DE0_DIGITAL_FIB(
 	input CLOCK_50,			// CLOCK //	
 	output [7:0] LED,			// LED //
 	output [33:0] GPIO_0_D,	// GPIO_0, GPIO_0 connect to GPIO Default //
@@ -22,21 +22,8 @@ wire virtual_state_sdr;
 wire virtual_state_udr;
 wire virtual_state_uir;
 wire virtual_state_cir;
-
-//assign GPIO_1_D[9:0] = seq_length[9:0];
-//assign GPIO_1_D[11] = 1'b0;
-//assign GPIO_1_D[13] = 1'b0;
-//assign GPIO_1_D[15] = 1'b0;
-//assign GPIO_1_D[33:22] = 12'b000_000_000_000;
-//assign GPIO_1_D[20:16] = div_base[4:0];
-//assign GPIO_1_D[21] = virtual_state_udr;
 assign GPIO_0_D[33:0] = GPIO_1_D[33:0];
-assign LED[1] = VSW_R_CLEAR;
-assign LED[2] = VSW_R_CLRTO1;
-assign LED[4:3] = 2'b00;
-assign LED[5] = GPIO_1_D[4]; // DIN
-assign LED[6] = GPIO_1_D[16]; // CLK
-assign LED[7] = GPIO_1_D[28]; // SYNC
+assign LED[7:0] = GPIO_1_D[7:0]; // DIN[7:0]
 wire CLOCK_500;
 wire [9:0]seq_length;
 wire [4:0]div_base;
@@ -46,13 +33,13 @@ clk_d20 UD(
 	.clk(CLOCK_500)
 );
 
-dout_SYN_vJTAG U0(
+DOUT_FIB U0(
 	.clk_in(CLOCK_500),
 	.trig(VK_SEND), 	
 	.clk(GPIO_1_D[16]),	// CLOCK
-	.dout(GPIO_1_D[4]),	// Digital Input
+	.dout(GPIO_1_D[7:0]),	// Digital Input
 	.syn(GPIO_1_D[28]),	// Sync Signal
-	.out_en(LED[0]),
+//	.out_en(LED[0]),
 	.clr_2_one(VSW_R_CLRTO1),
 	.clr_mode(VSW_R_CLEAR),
 	.data_reg(out_reg[1023:0]),

@@ -1,6 +1,6 @@
 set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE EP4CE22F17C6
-set_global_assignment -name TOP_LEVEL_ENTITY "DE0_DIGITAL_II"
+set_global_assignment -name TOP_LEVEL_ENTITY "DE0_DIGITAL_FIB"
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 9.1
 set_global_assignment -name LAST_QUARTUS_VERSION "12.1 SP1"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "16:17:44 DECEMBER 21,2010"
@@ -24,26 +24,6 @@ set_location_assignment PIN_D1 -to LED[4]
 set_location_assignment PIN_F3 -to LED[5]
 set_location_assignment PIN_B1 -to LED[6]
 set_location_assignment PIN_L3 -to LED[7]
-
-#============================================================
-# KEY
-#============================================================
-
-#============================================================
-# SW
-#============================================================
-
-#============================================================
-# Accelerometer and EEPROM
-#============================================================
-
-
-
-
-#============================================================
-# 2x13 GPIO Header
-#============================================================
-
 #============================================================
 # GPIO_0, GPIO_0 connect to GPIO Default
 #============================================================
@@ -129,9 +109,8 @@ set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 
 
 set_global_assignment -name ENABLE_SIGNALTAP OFF
-set_global_assignment -name VERILOG_FILE dout_SYN_vJTAG.v
 set_global_assignment -name VERILOG_FILE vJTAG_buffer.v
-set_global_assignment -name VERILOG_FILE DE0_DIGITAL_II.v
+set_global_assignment -name VERILOG_FILE DE0_DIGITAL_FIB.v
 set_global_assignment -name VERILOG_FILE vKEY.v
 set_global_assignment -name VERILOG_FILE clk_d20.v
 set_global_assignment -name VERILOG_FILE seq_length.v
@@ -148,6 +127,7 @@ set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 7
 set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 8
 set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 1
 set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 2
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name QIP_FILE pll.qip
 set_global_assignment -name QIP_FILE vJTAG.qip
+set_global_assignment -name VERILOG_FILE DOUT_FIB.v
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
